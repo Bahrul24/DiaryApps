@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dairyapps.databinding.ActivityMainBinding
 
@@ -33,8 +34,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Setelah setting adapter & layoutManager
         binding.rvDiary.adapter = adapter
         binding.rvDiary.layoutManager = layoutManager
+
+// Tambahkan ini:
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val item = adapter.currentList[position]
+                if (item is DiaryItem.Entry) {
+                    diaryViewModel.deleteDiary(item.diary)
+                } else {
+                    adapter.notifyItemChanged(position) // Cegah swipe pada header
+                }
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(binding.rvDiary)
+
 
         diaryViewModel.diaries.observe(this) { diaries ->
             val grouped = diaries.groupBy { it.date }

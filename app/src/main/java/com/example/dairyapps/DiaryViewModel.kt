@@ -27,4 +27,12 @@ class DiaryViewModel : ViewModel() {
             getDiaries()
         }
     }
+
+    fun deleteDiary(diary: Diary) {
+        viewModelScope.launch(Dispatchers.IO) {
+            diaryDatabase?.diaryDao()?.delete(diary)
+            getDiaries()
+        }
+    }
+
 }
