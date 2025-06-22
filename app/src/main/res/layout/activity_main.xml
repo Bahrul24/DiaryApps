@@ -1,60 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="#F8F8F8">
 
-    <EditText
-        android:id="@+id/etTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Judul"
-        android:padding="8dp"
-        android:background="@android:drawable/editbox_background_normal" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <EditText
-        android:id="@+id/etContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Isi Diary"
-        android:minLines="3"
-        android:gravity="top"
-        android:padding="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:drawable/editbox_background_normal" />
+        <!-- Judul Input -->
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Judul"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp" />
 
-    <EditText
-        android:id="@+id/etDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tanggal (YYYY-MM-DD)"
-        android:padding="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:drawable/editbox_background_normal" />
+        <!-- Isi Diary -->
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Isi Diary"
+            android:gravity="top"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp" />
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tambah Diary"
-        android:layout_marginTop="12dp" />
+        <!-- Tanggal -->
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tanggal (YYYY-MM-DD)"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp" />
 
-    <TextView
-        android:id="@+id/tvListLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Daftar Diary:"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+        <!-- Tombol Tambah -->
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambah Diary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="20dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDiary"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="8dp" />
-</LinearLayout>
+        <!-- Label -->
+        <TextView
+            android:id="@+id/tvListLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Diary:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="#333333" />
+
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDiary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>
